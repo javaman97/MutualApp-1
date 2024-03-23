@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Measurement Converter</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <main style="text-align: center;">
+    <img src="Finger measurment.jpg" alt="Description of the image">
+   <input type="number" id="inputNumber" style="text-align: center; margin: 0 auto;" placeholder="Enter the measurement">
+
+    <div>
+      <input type="radio" id="cm" name="unit" value="cm">
+      <label for="cm">Centimeters</label>
+
+      <input type="radio" id="in" name="unit" value="in">
+      <label for="in">Inches</label>
+    </div>
+
+    <button onclick="showOutput()">Show Output</button>
+    <br>
+    <output id="outputResult"></output>
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    function showOutput() {
+      const inputNumber = document.getElementById('inputNumber').value;
+      const unitSelection = document.querySelector('input[name="unit"]:checked').value;
+      const outputResult = document.getElementById('outputResult');
+
+      if (unitSelection === 'cm') {
+        const inches = convertCentimetersToInches(inputNumber);
+        outputResult.textContent = `Measurement: ${inputNumber} cm = ${inches.toFixed(2)} inches`;
+      } else if (unitSelection === 'in') {
+        const centimeters = convertInchesToCentimeters(inputNumber);
+        outputResult.textContent = `Measurement: ${inputNumber} inches = ${centimeters.toFixed(2)} cm`;
+      } else {
+        outputResult.textContent = 'Please select a unit.';
+      }
+    }
+  </script>
+</body>
+</html>
